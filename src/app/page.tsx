@@ -1,103 +1,154 @@
-import Image from "next/image";
+'use client';
+
+import { CONTRACT_ADDRESS, ABI } from '@/lib/contract';
+import { useState } from 'react';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useAccount, useWriteContract } from 'wagmi';
+import { NFTStorage, File } from 'nft.storage';
+import { uploadToPinata, uploadMetadataToPinata } from '@/lib/pinata';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const { address } = useAccount();
+  const { writeContractAsync } = useWriteContract();
+  const [txHash, setTxHash] = useState<string | null>(null);
+  const [file, setFile] = useState<File | null>(null);
+  const [description, setDescription] = useState('');
+  const [commercialUse, setCommercialUse] = useState(false);
+  const [derivatives, setDerivatives] = useState(false);
+  const [expiry, setExpiry] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!file || !address || !expiry) return alert('Fill all fields');
+  
+    // Upload image to IPFS via Pinata
+    const imageURI = await uploadToPinata(file);
+  
+    // Build and upload metadata
+    const metadata = {
+      name: file.name,
+      description,
+      image: imageURI,
+      attributes: [
+        { trait_type: 'Commercial Use', value: commercialUse },
+        { trait_type: 'Derivatives Allowed', value: derivatives },
+        { trait_type: 'Expiry', value: expiry }
+      ]
+    };
+  
+    const tokenURI = await uploadMetadataToPinata(metadata);
+    const expiryUnix = Math.floor(new Date(expiry).getTime() / 1000);
+  
+    const tx = await writeContractAsync({
+      abi: ABI,
+      address: CONTRACT_ADDRESS as `0x${string}`,
+      functionName: 'registerIP',
+      args: [address, tokenURI, commercialUse, derivatives, expiryUnix]
+    });
+
+    setTxHash(tx);
+  
+    alert('✅ IP Registered via Pinata!');
+    setSubmitted(true);
+  }
+
+
+  return (
+    <div className="min-h-screen bg-gray-50 px-4 py-10">
+      <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-md p-8 space-y-6">
+        <div className="flex items-center justify-between">
+          <h1 className="text-3xl font-bold text-gray-800">Register Your IP</h1>
+          <ConnectButton />
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Upload File</label>
+            <input
+              type="file"
+              onChange={e => setFile(e.target.files?.[0] || null)}
+              className="w-full text-sm text-gray-700 border border-gray-300 rounded-md px-4 py-2 file:text-gray-600 file:mr-4 file:rounded-md file:border-0 file:bg-gray-100 file:px-4 file:py-2"
             />
-            Deploy now
-          </a>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+            <input
+              type="text"
+              placeholder="e.g. Digital artwork, melody, design..."
+              className="w-full border border-gray-300 rounded-md px-4 py-2 placeholder-gray-500 text-gray-800"
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label className="inline-flex items-center text-gray-800 font-medium">
+              <input
+                type="checkbox"
+                checked={commercialUse}
+                onChange={() => setCommercialUse(!commercialUse)}
+                className="mr-2 h-4 w-4 rounded border-gray-300 text-black transition-all duration-150 ease-in-out focus:ring-2 focus:ring-black"
+              />
+              Allow Commercial Use
+            </label>
+
+            <label className="inline-flex items-center text-gray-800 font-medium">
+              <input
+                type="checkbox"
+                checked={derivatives}
+                onChange={() => setDerivatives(!derivatives)}
+                className="mr-2 h-4 w-4 rounded border-gray-300 text-black transition-all duration-150 ease-in-out focus:ring-2 focus:ring-black"
+              />
+              Allow Derivative Works
+            </label>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">License Expiry</label>
+            <input
+              type="date"
+              placeholder="yyyy-mm-dd"
+              className="w-full border border-gray-300 rounded-md px-4 py-2 placeholder-gray-500 text-gray-800"
+              onChange={e => setExpiry(e.target.value)}
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-black text-white font-semibold py-3 px-4 rounded-md hover:bg-gray-900 transition"
+          >
+            🚀 Register IP
+          </button>
+        </form>
+        {txHash && (
+        <div className="mt-6 text-sm text-green-700">
+          ✅ Transaction submitted: <br />
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href={`https://basecamp.cloud.blockscout.com/tx/${txHash}`}
             target="_blank"
             rel="noopener noreferrer"
+            className="underline break-all"
           >
-            Read our docs
+            {txHash}
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      )}
+
+        {submitted && file && (
+          <div className="mt-6 border-t pt-6">
+            <h2 className="text-lg font-semibold mb-2 text-gray-800">Submission Summary</h2>
+            <ul className="text-gray-700 space-y-1">
+              <li><strong>File:</strong> {file.name}</li>
+              <li><strong>Description:</strong> {description}</li>
+              <li><strong>Commercial Use:</strong> {commercialUse ? 'Allowed' : 'Not allowed'}</li>
+              <li><strong>Derivatives:</strong> {derivatives ? 'Allowed' : 'Not allowed'}</li>
+              <li><strong>Expiry:</strong> {expiry || 'Not set'}</li>
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
