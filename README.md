@@ -1,91 +1,85 @@
-IP Registry
+# IP Registry 
+Tokani is a pioneering platform designed to establish an autonomous Intellectual Property (IP) registry on the Camp Network blockchain, focusing on the invaluable genetic and agronomic diversity of endemic seeds. Facing the risk of non-consensual use and lack of attribution threatening the creators and custodians of biological resources (similar to what happens with digital content and AI), Tokani leverages Camp's Origin Framework to tokenize and register this unique IP on-chain. The goal is to grant sovereignty and control to the original creators – indigenous communities, traditional farmers, and collaborating institutions – over their genetic heritage. Through NFTs on the BaseCAMP L1, Tokani creates a verifiable provenance record for each seed variety, enabling transparent license management for research, conservation, and development, and laying the groundwork for equitable value flows back to the custodians. This project represents a significant IPFi (Intellectual Property Finance) application, demonstrating how Camp Network can secure and monetize unique forms of IP beyond traditional digital content.
+## 🌱 Features
 
-Tokani is a pioneering platform designed to establish an autonomous Intellectual Property (IP) registry on the Camp Network blockchain, focusing on the invaluable genetic and agronomic diversity of endemic seeds. Facing the risk of non-consensual use and lack of attribution threatening the creators and custodians of biological resources (similar to what happens with digital content and AI), Tokani leverages Camp's Origin Framework to tokenize and register this unique IP on-chain. The goal is to grant sovereignty and control to the original creators – indigenous communities, traditional farmers, and collaborating institutions – over their genetic heritage
+- **Seed Registration**: Allows you to register seeds and genetic resources with their unique characteristics
+- **IP Protection**: Uses blockchain to secure the intellectual property of seeds
+- **Detailed Metadata**: Stores important information such as:
+  - Species (e.g., Zea mays, Phaseolus vulgaris)
+  - Geographic distribution
+  - Custodial community
+  - Location
+  - Commercial use terms
+  - Permissions for derivative works
 
-## 🌱 Características
-
-- **Registro de Semillas**: Permite registrar semillas y recursos genéticos con sus características únicas
-- **Protección de IP**: Utiliza blockchain para asegurar la propiedad intelectual de las semillas
-- **Metadatos Detallados**: Almacena información importante como:
-  - Especie (e.g., Zea mays, Phaseolus vulgaris)
-  - Distribución geográfica
-  - Comunidad custodiana
-  - Ubicación
-  - Términos de uso comercial
-  - Permisos para obras derivadas
-
-## 🛠️ Tecnologías Utilizadas
+## 🛠️ Technologies Used
 
 - **Frontend**:
-  - CAMP TECH
   - Next.js
   - React
   - Tailwind CSS
-  - Framer Motion (animaciones)
-  - Wagmi (integración con blockchain)
-  - RainbowKit (conexión de wallet)
-    
+  - Framer Motion (animations)
+  - Wagmi (blockchain integration)
+  - RainbowKit (wallet connection)
 
 - **Blockchain**:
-  - Contratos inteligentes en CAMP
-  - IPFS para almacenamiento de metadatos
-  - Pinata para gestión de IPFS
+  - Smart contracts on Ethereum
+  - IPFS for metadata storage
+  - Pinata for IPFS management
 
-##  Instalación
+## 🚀 Installation
 
-1. Clona el repositorio:
+1. Clone the repository:
 ```bash
 git clone https://github.com/tu-usuario/ip-frontend.git
 cd ip-frontend
 ```
 
-2. Instala las dependencias:
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-3. Configurar las variables de entorno:
-Crea un archivo `.env.local` con:
+3. Configure environment variables:
+Create a `.env.local` file with:
 ```env
-NEXT_PUBLIC_CONTRACT_ADDRESS=tu_direccion_de_contrato
-PINATA_API_KEY=tu_api_key
-PINATA_SECRET_API_KEY=tu_secret_api_key
+NEXT_PUBLIC_CONTRACT_ADDRESS=your_contract_address
+PINATA_API_KEY=your_api_key
+PINATA_SECRET_API_KEY=your_secret_api_key
 ```
 
-4. Inicia el servidor de desarrollo:
+4. Start the development server:
 ```bash
 npm run dev
 ```
 
-## 📝 Uso
+## 📝 Usage
 
-1. Conecta tu wallet (MetaMask o similar)
-2. Completa el formulario con la información de la semilla:
-   - Sube la información genética de la semilla de origen nativo mexicana
-   - Describe la semilla
-   - Especifica la especie
-   - Indica la distribución geográfica
-   - Define los términos de uso
-3. Registra la semilla en la blockchain
-4. Recibe un NFT que representa tu propiedad intelectual
+1. Connect your wallet (MetaMask or similar)
+2. Fill out the form with the seed information:
+   - Upload an image or document
+   - Describe the seed
+   - Specify the species
+   - Indicate the geographic distribution
+   - Define the terms of use
+3. Register the seed on the blockchain
+4. Receive an NFT representing your intellectual property
 
+## 🎨 Design
 
+- Modern and user-friendly interface
+- Nature-inspired color theme
+- Smooth animations for a better user experience
+- Responsive design for all devices
 
- ##🔒 Seguridad
+## 🔒 Security
 
-- Conexión segura con blockchain
-- Almacenamiento descentralizado en IPFS
-- Protección de datos sensibles
-- Verificación de propiedad mediante NFTs
+- Secure connection with blockchain
+- Decentralized storage on IPFS
+- Protection of sensitive data
+- Ownership verification via NFTs
 
-##🤝 Contribución
+## 🤝 Contribution
 
-Las contribuciones son bienvenidas. Por favor, sigue estos pasos:
-
-1. Haz un fork del proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
-
+Contributions are welcome. 
 
