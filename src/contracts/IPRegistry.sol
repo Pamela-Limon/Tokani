@@ -12,7 +12,10 @@ contract IPRegistry is ERC721, Ownable, IERC2981 {
     struct LicenseTerms {
         bool commercialUse;
         bool derivativeWorksAllowed;
-        uint256 expiryTimestamp;
+        string location;
+        string custodialCommunity;
+        string geneticInformation;
+        string species;
     }
 
     mapping(uint256 => LicenseTerms) public licenses;
@@ -31,7 +34,10 @@ contract IPRegistry is ERC721, Ownable, IERC2981 {
         string memory uri,
         bool commercialUse,
         bool derivativeWorksAllowed,
-        uint256 expiryTimestamp
+        string memory location,
+        string memory custodialCommunity,
+        string memory geneticInformation,
+        string memory species
     ) external onlyOwner {
         uint256 tokenId = nextTokenId;
         _safeMint(to, tokenId);
@@ -41,7 +47,10 @@ contract IPRegistry is ERC721, Ownable, IERC2981 {
         licenses[tokenId] = LicenseTerms({
             commercialUse: commercialUse,
             derivativeWorksAllowed: derivativeWorksAllowed,
-            expiryTimestamp: expiryTimestamp
+            location: location,
+            custodialCommunity: custodialCommunity,
+            geneticInformation: geneticInformation,
+            species: species
         });
 
         creators[tokenId] = to;

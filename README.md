@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# IP Registry Frontend
 
-## Getting Started
+Aplicación web para el registro y protección de semillas y recursos genéticos utilizando blockchain y NFT.
 
-First, run the development server:
+## 🌱 Características
 
+- **Registro de Semillas**: Permite registrar semillas y recursos genéticos con sus características únicas
+- **Protección de IP**: Utiliza blockchain para asegurar la propiedad intelectual de las semillas
+- **Metadatos Detallados**: Almacena información importante como:
+  - Especie (e.g., Zea mays, Phaseolus vulgaris)
+  - Distribución geográfica
+  - Comunidad custodiana
+  - Ubicación
+  - Términos de uso comercial
+  - Permisos para obras derivadas
+
+## 🛠️ Tecnologías Utilizadas
+
+- **Frontend**:
+  - Next.js
+  - React
+  - Tailwind CSS
+  - Framer Motion (animaciones)
+  - Wagmi (integración con blockchain)
+  - RainbowKit (conexión de wallet)
+
+- **Blockchain**:
+  - Contratos inteligentes en Ethereum
+  - IPFS para almacenamiento de metadatos
+  - Pinata para gestión de IPFS
+
+## 🚀 Instalación
+
+1. Clona el repositorio:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/tu-usuario/ip-frontend.git
+cd ip-frontend
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Instala las dependencias:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Configura las variables de entorno:
+Crea un archivo `.env.local` con:
+```env
+NEXT_PUBLIC_CONTRACT_ADDRESS=tu_direccion_de_contrato
+PINATA_API_KEY=tu_api_key
+PINATA_SECRET_API_KEY=tu_secret_api_key
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Inicia el servidor de desarrollo:
+```bash
+npm run dev
+```
 
-## Learn More
+## 📝 Uso
 
-To learn more about Next.js, take a look at the following resources:
+1. Conecta tu wallet (MetaMask o similar)
+2. Completa el formulario con la información de la semilla:
+   - Sube una imagen o documento
+   - Describe la semilla
+   - Especifica la especie
+   - Indica la distribución geográfica
+   - Define los términos de uso
+3. Registra la semilla en la blockchain
+4. Recibe un NFT que representa tu propiedad intelectual
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Diseño
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Interfaz moderna y amigable
+- Tema de colores inspirado en la naturaleza
+- Animaciones suaves para mejor experiencia de usuario
+- Diseño responsivo para todos los dispositivos
 
-## Deploy on Vercel
+## 🔒 Seguridad
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Conexión segura con blockchain
+- Almacenamiento descentralizado en IPFS
+- Protección de datos sensibles
+- Verificación de propiedad mediante NFTs
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contribución
+
+Las contribuciones son bienvenidas. Por favor, sigue estos pasos:
+
+1. Haz un fork del proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+
+## 📞 Contacto
+
+Para preguntas o sugerencias, por favor contacta a [tu-email@ejemplo.com](mailto:tu-email@ejemplo.com)

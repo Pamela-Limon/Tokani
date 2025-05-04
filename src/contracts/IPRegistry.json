@@ -1,0 +1,190 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "getFullLicenseTerms",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "commercialUse",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "derivativeWorksAllowed",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "expiryTimestamp",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "species",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "genetics",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "location",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "getGenetics",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "getLocation",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "getSpecies",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "licenseTermsByToken",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "commercialUse",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "derivativeWorksAllowed",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "expiryTimestamp",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "species",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "genetics",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "location",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "commercialUse",
+				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "derivativeWorksAllowed",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "expiryTimestamp",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "species",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "genetics",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "location",
+				"type": "string"
+			}
+		],
+		"name": "setLicenseTerms",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
