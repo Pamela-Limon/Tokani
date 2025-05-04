@@ -1,6 +1,6 @@
 # IP Registry Frontend
 
-Aplicación web para el registro y protección de semillas y recursos genéticos utilizando blockchain y NFT.
+Tokani is a pioneering platform designed to establish an autonomous Intellectual Property (IP) registry on the Camp Network blockchain, focusing on the invaluable genetic and agronomic diversity of endemic seeds. Facing the risk of non-consensual use and lack of attribution threatening the creators and custodians of biological resources (similar to what happens with digital content and AI), Tokani leverages Camp's Origin Framework to tokenize and register this unique IP on-chain. The goal is to grant sovereignty and control to the original creators – indigenous communities, traditional farmers, and collaborating institutions – over their genetic heritage
 
 ## 🌱 Características
 
@@ -17,19 +17,21 @@ Aplicación web para el registro y protección de semillas y recursos genéticos
 ## 🛠️ Tecnologías Utilizadas
 
 - **Frontend**:
+  - CAMP TECH
   - Next.js
   - React
   - Tailwind CSS
   - Framer Motion (animaciones)
   - Wagmi (integración con blockchain)
   - RainbowKit (conexión de wallet)
+    
 
 - **Blockchain**:
-  - Contratos inteligentes en Ethereum
+  - Contratos inteligentes en CAMP
   - IPFS para almacenamiento de metadatos
   - Pinata para gestión de IPFS
 
-## 🚀 Instalación
+##  Instalación
 
 1. Clona el repositorio:
 ```bash
@@ -42,7 +44,7 @@ cd ip-frontend
 npm install
 ```
 
-3. Configura las variables de entorno:
+3. Configurar las variables de entorno:
 Crea un archivo `.env.local` con:
 ```env
 NEXT_PUBLIC_CONTRACT_ADDRESS=tu_direccion_de_contrato
@@ -59,7 +61,7 @@ npm run dev
 
 1. Conecta tu wallet (MetaMask o similar)
 2. Completa el formulario con la información de la semilla:
-   - Sube una imagen o documento
+   - Sube la información genética de la semilla de origen nativo mexicana
    - Describe la semilla
    - Especifica la especie
    - Indica la distribución geográfica
@@ -67,21 +69,16 @@ npm run dev
 3. Registra la semilla en la blockchain
 4. Recibe un NFT que representa tu propiedad intelectual
 
-## 🎨 Diseño
 
-- Interfaz moderna y amigable
-- Tema de colores inspirado en la naturaleza
-- Animaciones suaves para mejor experiencia de usuario
-- Diseño responsivo para todos los dispositivos
 
-## 🔒 Seguridad
+ ##🔒 Seguridad
 
 - Conexión segura con blockchain
 - Almacenamiento descentralizado en IPFS
 - Protección de datos sensibles
 - Verificación de propiedad mediante NFTs
 
-## 🤝 Contribución
+##🤝 Contribución
 
 Las contribuciones son bienvenidas. Por favor, sigue estos pasos:
 
@@ -91,10 +88,4 @@ Las contribuciones son bienvenidas. Por favor, sigue estos pasos:
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
-## 📄 Licencia
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
-
-## 📞 Contacto
-
-Para preguntas o sugerencias, por favor contacta a [tu-email@ejemplo.com](mailto:tu-email@ejemplo.com)
