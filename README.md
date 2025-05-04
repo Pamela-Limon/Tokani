@@ -1,4 +1,4 @@
-# IP Registry Frontend
+IP Registry
 
 Tokani is a pioneering platform designed to establish an autonomous Intellectual Property (IP) registry on the Camp Network blockchain, focusing on the invaluable genetic and agronomic diversity of endemic seeds. Facing the risk of non-consensual use and lack of attribution threatening the creators and custodians of biological resources (similar to what happens with digital content and AI), Tokani leverages Camp's Origin Framework to tokenize and register this unique IP on-chain. The goal is to grant sovereignty and control to the original creators – indigenous communities, traditional farmers, and collaborating institutions – over their genetic heritage
 
